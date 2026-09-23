@@ -89,34 +89,8 @@ TEMPLATE = r'''<!doctype html>
       gap: 24px;
       color: white;
     }
-    .brand { display: flex; align-items: center; gap: 12px; min-width: 225px; }
-    .brand-mark {
-      width: 48px;
-      height: 48px;
-      border: 2px solid rgba(255,255,255,.8);
-      border-radius: 50%;
-      position: relative;
-      flex: 0 0 48px;
-    }
-    .brand-mark::before {
-      content: "";
-      position: absolute;
-      inset: 8px 16px 7px;
-      border: 3px solid var(--orange);
-      border-top: 0;
-      border-radius: 0 0 12px 12px;
-      transform: rotate(18deg);
-    }
-    .brand-mark::after {
-      content: "";
-      position: absolute;
-      width: 7px;
-      height: 7px;
-      border: 3px solid var(--orange);
-      border-radius: 50%;
-      left: 17px;
-      bottom: 6px;
-    }
+    .brand { display: flex; align-items: center; gap: 14px; min-width: 225px; }
+    .brand::before { content: ""; width: 3px; height: 38px; flex: 0 0 3px; background: var(--orange); transform: skew(-12deg); }
     .brand strong { display: block; font-size: 1.06rem; letter-spacing: .075em; line-height: 1; }
     .brand small { display: block; margin-top: 5px; color: rgba(255,255,255,.68); font-size: .71rem; letter-spacing: .12em; text-transform: uppercase; }
     .nav-links { display: flex; align-items: center; gap: 28px; font-size: .88rem; font-weight: 800; }
@@ -231,7 +205,7 @@ TEMPLATE = r'''<!doctype html>
       letter-spacing: -.055em;
     }
     .section-head p { margin: 0; color: var(--muted); font-size: 1.05rem; line-height: 1.65; }
-    .tour-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .tour-grid { display: grid; grid-template-columns: 1.12fr .88fr; grid-template-rows: repeat(2, minmax(0, 1fr)); gap: 16px; }
     .tour-card {
       min-height: 430px;
       padding: 28px;
@@ -244,21 +218,12 @@ TEMPLATE = r'''<!doctype html>
       transition: transform .25s ease, box-shadow .25s ease;
     }
     .tour-card:hover { transform: translateY(-7px); box-shadow: var(--shadow); }
-    .tour-card::before {
-      content: attr(data-number);
-      position: absolute;
-      right: 14px;
-      top: 4px;
-      font-family: Georgia, serif;
-      font-size: 8rem;
-      color: rgba(33,31,29,.045);
-      line-height: 1;
-    }
-    .tour-card.featured { color: white; background: var(--ink); border-color: var(--ink); }
-    .tour-card.featured::before { color: rgba(255,255,255,.06); }
+    .tour-card.featured { grid-row: 1 / 3; min-height: 596px; color: white; background: var(--ink); border-color: var(--ink); }
+    .tour-card:not(.featured) { min-height: 290px; }
     .tour-card .tag { align-self: flex-start; padding: 7px 9px; background: rgba(239,96,53,.12); color: var(--orange-dark); font-size: .72rem; font-weight: 900; text-transform: uppercase; letter-spacing: .1em; }
     .tour-card.featured .tag { color: #ff9a77; background: rgba(239,96,53,.13); }
     .tour-card h3 { margin: auto 0 14px; font-family: Georgia, serif; font-size: 2.35rem; font-weight: 500; line-height: .98; letter-spacing: -.035em; }
+    .tour-card.featured h3 { max-width: 440px; margin: clamp(90px, 10vw, 140px) 0 14px; font-size: clamp(3rem, 5vw, 5rem); }
     .tour-card p { margin: 0; color: var(--muted); line-height: 1.56; }
     .tour-card.featured p { color: rgba(255,255,255,.68); }
     .tour-meta { display: flex; flex-wrap: wrap; gap: 7px; margin: 20px 0 24px; }
@@ -275,9 +240,9 @@ TEMPLATE = r'''<!doctype html>
     .split-copy { padding: clamp(70px, 9vw, 130px); display: flex; flex-direction: column; justify-content: center; }
     .split-copy h2 { margin: 18px 0 22px; font-family: Georgia, serif; font-size: clamp(3rem, 5.3vw, 5.7rem); font-weight: 500; line-height: .92; letter-spacing: -.055em; }
     .split-copy > p { color: rgba(255,255,255,.7); line-height: 1.68; font-size: 1.05rem; }
-    .guide-points { display: grid; gap: 18px; margin-top: 28px; }
-    .guide-point { display: grid; grid-template-columns: 46px 1fr; gap: 15px; align-items: start; }
-    .guide-icon { width: 42px; height: 42px; border: 1px solid rgba(255,255,255,.3); border-radius: 50%; display: grid; place-items: center; color: #ff8b64; font-weight: 900; }
+    .guide-points { display: grid; gap: 0; margin-top: 30px; border-top: 1px solid rgba(255,255,255,.17); }
+    .guide-point { display: grid; grid-template-columns: 78px 1fr; gap: 18px; align-items: start; padding: 19px 0; border-bottom: 1px solid rgba(255,255,255,.17); }
+    .guide-label { padding-top: 2px; color: #ff8b64; font-size: .7rem; letter-spacing: .13em; text-transform: uppercase; font-weight: 900; }
     .guide-point strong { display: block; }
     .guide-point span { display: block; margin-top: 4px; color: rgba(255,255,255,.6); line-height: 1.45; }
     .flow { background: #dfeaf0; }
@@ -286,9 +251,9 @@ TEMPLATE = r'''<!doctype html>
     .flow-copy h2 { margin: 18px 0; font-family: Georgia, serif; font-size: clamp(3rem, 5vw, 5.4rem); font-weight: 500; line-height: .92; letter-spacing: -.055em; }
     .flow-copy p { color: #4c626d; line-height: 1.65; }
     .steps-list { display: grid; }
-    .flow-step { display: grid; grid-template-columns: 70px 1fr; gap: 24px; padding: 30px 0; border-top: 1px solid rgba(23,95,122,.22); }
+    .flow-step { display: grid; grid-template-columns: 92px 1fr; gap: 24px; padding: 30px 0; border-top: 1px solid rgba(23,95,122,.22); }
     .flow-step:last-child { border-bottom: 1px solid rgba(23,95,122,.22); }
-    .flow-step b { font-family: Georgia, serif; font-size: 2.2rem; color: var(--blue); }
+    .flow-step b { padding-top: 4px; color: var(--blue); font-size: .72rem; letter-spacing: .13em; text-transform: uppercase; }
     .flow-step h3 { margin: 0 0 8px; font-size: 1.2rem; }
     .flow-step p { margin: 0; color: #536770; line-height: 1.55; }
     .review-section { background: var(--paper-2); }
@@ -296,9 +261,9 @@ TEMPLATE = r'''<!doctype html>
     .review-main { padding: clamp(34px, 6vw, 76px); background: var(--orange); color: white; }
     .review-main .stars { letter-spacing: .2em; }
     .review-main blockquote { margin: 28px 0 34px; font-family: Georgia, serif; font-size: clamp(2.3rem, 4.8vw, 4.8rem); font-weight: 500; line-height: 1.02; letter-spacing: -.045em; }
-    .review-main p { margin: 0; color: rgba(255,255,255,.78); line-height: 1.55; }
+    .review-main p { margin: 0; color: rgba(255,255,255,.86); line-height: 1.55; font-weight: 800; }
     .review-stats { padding: 44px; background: var(--ink); color: white; display: flex; flex-direction: column; justify-content: space-between; }
-    .review-stats strong { display: block; font-family: Georgia, serif; font-size: 5.4rem; font-weight: 500; color: #ff8a63; line-height: 1; }
+    .review-stats strong { display: block; max-width: 300px; font-family: Georgia, serif; font-size: clamp(2.4rem, 4vw, 4rem); font-weight: 500; color: #ff8a63; line-height: .98; }
     .review-stats span { color: rgba(255,255,255,.62); line-height: 1.5; }
     .review-themes { display: grid; gap: 12px; margin-top: 34px; }
     .review-theme { padding: 15px 0; border-top: 1px solid rgba(255,255,255,.18); font-weight: 800; }
@@ -462,7 +427,9 @@ TEMPLATE = r'''<!doctype html>
       .hero-inner { grid-template-columns: 1fr; }
       .hero-note { justify-self: start; }
       .tour-grid { grid-template-columns: 1fr; }
-      .tour-card { min-height: 340px; }
+      .tour-grid { grid-template-rows: none; }
+      .tour-card, .tour-card.featured, .tour-card:not(.featured) { grid-row: auto; min-height: 340px; }
+      .tour-card.featured h3 { margin: auto 0 14px; }
       .split-inner, .flow-layout, .reviews, .faq, .modal { grid-template-columns: 1fr; }
       .split-photo { min-height: 560px; }
       .flow-copy { position: static; }
@@ -506,8 +473,7 @@ TEMPLATE = r'''<!doctype html>
   <header class="nav-wrap">
     <nav class="nav" aria-label="Main navigation">
       <a class="brand" href="#top" aria-label="Moab Canyon Tours home">
-        <span class="brand-mark" aria-hidden="true"></span>
-        <span><strong>MOAB CANYON TOURS</strong><small>Private desert adventures</small></span>
+        <span><strong>MOAB CANYON TOURS</strong><small>Canyoneering · climbing · hiking</small></span>
       </a>
       <div class="nav-links">
         <a href="#adventures">Adventures</a>
@@ -532,18 +498,18 @@ TEMPLATE = r'''<!doctype html>
           </div>
         </div>
         <aside class="hero-note" aria-label="Private tour highlight">
-          <strong>Your canyon. Your pace.</strong>
-          <span>Private departures built around your experience level, goals, and sense of adventure.</span>
+          <strong>Your group gets the guide.</strong>
+          <span>Every tour is private, so the pace and route can fit the people who actually show up.</span>
         </aside>
       </div>
     </section>
 
     <section class="proof-strip" aria-label="Tour highlights">
       <div class="proof-inner">
-        <div class="proof-item"><strong>Private tours</strong><span>Your group, your guide</span></div>
-        <div class="proof-item"><strong>Ages 7+</strong><span>Beginner-friendly options</span></div>
-        <div class="proof-item"><strong>Safety first</strong><span>Experienced local guides</span></div>
-        <div class="proof-item"><strong>5-star favorite</strong><span>Hundreds of traveler reviews</span></div>
+        <div class="proof-item"><strong>Private tours</strong><span>No mixed groups</span></div>
+        <div class="proof-item"><strong>Half + full days</strong><span>Choose the commitment</span></div>
+        <div class="proof-item"><strong>Ages 7+</strong><span>Options for first-timers</span></div>
+        <div class="proof-item"><strong>Daily, 7am–7pm</strong><span>Local help when you need it</span></div>
       </div>
     </section>
 
@@ -551,32 +517,32 @@ TEMPLATE = r'''<!doctype html>
       <div class="section-inner">
         <div class="section-head">
           <div>
-            <span class="eyebrow" style="color:var(--orange-dark)">Choose your line</span>
-            <h2>Three ways into the wild.</h2>
+            <span class="eyebrow" style="color:var(--orange-dark)">Popular canyoneering trips</span>
+            <h2>Three private tours to start with.</h2>
           </div>
           <p>Start with the time you have and the kind of challenge you want. Every option includes a private guide and a route selected for the group.</p>
         </div>
         <div class="tour-grid">
-          <article class="tour-card featured" data-number="01">
-            <span class="tag">Best first canyon</span>
+          <article class="tour-card featured">
+            <span class="tag">Best for first-timers</span>
             <h3>Bow &amp; Arrow Canyon</h3>
-            <p>A lively half-day introduction with hiking, scrambling, and a memorable rappel through classic Moab sandstone.</p>
+            <p>A four-hour introduction to canyoneering with hiking, scrambling, and rappels through classic Moab sandstone.</p>
             <div class="tour-meta"><span>From $169</span><span>4 hours</span><span>Ages 7+</span></div>
-            <button class="card-link js-open-booking" type="button"><span>Check this tour</span><span>↗</span></button>
+            <button class="card-link js-open-booking" type="button"><span>View dates</span><span>↗</span></button>
           </article>
-          <article class="tour-card" data-number="02">
-            <span class="tag">Mix it up</span>
+          <article class="tour-card">
+            <span class="tag">Climbing + canyon</span>
             <h3>Cable Arch</h3>
-            <p>Part canyon, part climb, and all fun — an active half day for guests who want variety without committing a full day.</p>
+            <p>A four-hour outing that combines climbing, cabling, and canyoneering for guests who want a little of everything.</p>
             <div class="tour-meta"><span>From $139</span><span>4 hours</span><span>Ages 7+</span></div>
-            <button class="card-link js-open-booking" type="button"><span>Check this tour</span><span>↗</span></button>
+            <button class="card-link js-open-booking" type="button"><span>View dates</span><span>↗</span></button>
           </article>
-          <article class="tour-card" data-number="03">
-            <span class="tag">Go farther</span>
+          <article class="tour-card">
+            <span class="tag">Full day · North Wash</span>
             <h3>Irish Canyons</h3>
-            <p>A full-day slot-canyon mission with remote terrain, deeper challenge, and the satisfaction of a true desert objective.</p>
+            <p>A longer day in North Wash, where short approaches lead to a wide range of beautiful slot-canyon routes.</p>
             <div class="tour-meta"><span>From $349</span><span>7–12 hours</span><span>Ages 7+</span></div>
-            <button class="card-link js-open-booking" type="button"><span>Check this tour</span><span>↗</span></button>
+            <button class="card-link js-open-booking" type="button"><span>View dates</span><span>↗</span></button>
           </article>
         </div>
       </div>
@@ -586,13 +552,13 @@ TEMPLATE = r'''<!doctype html>
       <div class="split-inner">
         <div class="split-photo" role="img" aria-label="A guide and two adult guests walking through a sculpted red-rock slot canyon"></div>
         <div class="split-copy">
-          <span class="eyebrow" style="color:#ff8b64">Guided, not generic</span>
-          <h2>Big adventure. Calm confidence.</h2>
-          <p>You do not need prior rope experience to have an unforgettable day. A great guide makes the terrain feel approachable, teaches as you go, and keeps the focus on the experience.</p>
+          <span class="eyebrow" style="color:#ff8b64">A private day</span>
+          <h2>The route changes with the group.</h2>
+          <p>Your guide can adjust the pace around age, fitness, comfort with heights, and prior experience. First time on rope is fine.</p>
           <div class="guide-points">
-            <div class="guide-point"><span class="guide-icon">01</span><div><strong>Matched to your crew</strong><span>Routes are chosen around fitness, comfort, age, and ambition.</span></div></div>
-            <div class="guide-point"><span class="guide-icon">02</span><div><strong>Hands-on instruction</strong><span>Learn the movement, systems, and desert know-how behind the adventure.</span></div></div>
-            <div class="guide-point"><span class="guide-icon">03</span><div><strong>Private by design</strong><span>Move at your pace without being folded into a large mixed group.</span></div></div>
+            <div class="guide-point"><span class="guide-label">Fit</span><div><strong>Matched to your crew</strong><span>Routes are chosen around fitness, comfort, age, and ambition.</span></div></div>
+            <div class="guide-point"><span class="guide-label">Skills</span><div><strong>Instruction as you go</strong><span>Learn the movement, rope systems, and desert know-how behind the day.</span></div></div>
+            <div class="guide-point"><span class="guide-label">Pace</span><div><strong>Private from start to finish</strong><span>No need to keep up with a mixed group or wait for strangers.</span></div></div>
           </div>
         </div>
       </div>
@@ -601,16 +567,15 @@ TEMPLATE = r'''<!doctype html>
     <section class="section flow" id="planning">
       <div class="section-inner flow-layout">
         <div class="flow-copy">
-          <span class="eyebrow" style="color:var(--blue)">Book with clarity</span>
-          <h2>Your day, mapped in minutes.</h2>
-          <p>A cleaner online flow lets guests choose the right experience, see practical details, and reserve without bouncing between tour pages and a separate checkout.</p>
+          <span class="eyebrow" style="color:var(--blue)">Before you book</span>
+          <h2>Get the details sorted before checkout.</h2>
+          <p>Choose the tour, date, and guest details in one place. This demo shows how that could feel without sending guests through a second, disconnected experience.</p>
           <button class="button dark js-open-booking" type="button" style="margin-top:20px">Try the booking demo</button>
         </div>
         <div class="steps-list">
-          <article class="flow-step"><b>01</b><div><h3>Choose your adventure</h3><p>Compare duration, price, minimum age, and challenge at a glance.</p></div></article>
-          <article class="flow-step"><b>02</b><div><h3>Pick a date</h3><p>See a straightforward calendar and departure options for your group.</p></div></article>
-          <article class="flow-step"><b>03</b><div><h3>Tell us about the crew</h3><p>Share guest count and experience level so the team can prepare well.</p></div></article>
-          <article class="flow-step"><b>04</b><div><h3>Reserve with confidence</h3><p>Keep the booking experience visually connected to the adventure that inspired it.</p></div></article>
+          <article class="flow-step"><b>Tour</b><div><h3>Compare the basics</h3><p>Duration, price, minimum age, and trip style stay together.</p></div></article>
+          <article class="flow-step"><b>Date</b><div><h3>See departure options</h3><p>Pick a day and time without leaving the page that sold the experience.</p></div></article>
+          <article class="flow-step"><b>Group</b><div><h3>Share the useful details</h3><p>Guest count and experience level help the team prepare for the right day.</p></div></article>
         </div>
       </div>
     </section>
@@ -620,11 +585,11 @@ TEMPLATE = r'''<!doctype html>
         <div class="reviews">
           <div class="review-main">
             <div class="stars" aria-label="Five stars">★★★★★</div>
-            <blockquote>“I felt safe, capable, and completely in the moment.”</blockquote>
-            <p>That is the pattern across traveler feedback: patient guides, clear instruction, thoughtful pacing, and days people remember long after the ropes are packed.</p>
+            <blockquote>“We were nervous first timers, but Laura was fantastic.”</blockquote>
+            <p>Krista S. · Tripadvisor</p>
           </div>
           <aside class="review-stats">
-            <div><strong>5.0</strong><span>Traveler rating on TripAdvisor, with more than 800 reviews.</span></div>
+            <div><strong>What guests keep mentioning</strong><span>Real themes pulled from Moab Canyon Tours’ published Tripadvisor reviews.</span></div>
             <div class="review-themes">
               <div class="review-theme">First-timer friendly</div>
               <div class="review-theme">Safety-minded guides</div>
@@ -649,8 +614,8 @@ TEMPLATE = r'''<!doctype html>
 
     <section class="final-cta">
       <div class="final-inner">
-        <span class="eyebrow">Ready when you are</span>
-        <h2>Meet the Moab most visitors never see.</h2>
+        <span class="eyebrow">Ready to pick a canyon?</span>
+        <h2>Compare private tours by time, price, and comfort level.</h2>
         <button class="button dark js-open-booking" type="button">Find your tour</button>
       </div>
     </section>
@@ -658,7 +623,7 @@ TEMPLATE = r'''<!doctype html>
 
   <footer>
     <div class="footer-inner">
-      <div class="brand"><span class="brand-mark" aria-hidden="true"></span><span><strong>MOAB CANYON TOURS</strong><small>Concept website mockup</small></span></div>
+      <div class="brand"><span><strong>MOAB CANYON TOURS</strong><small>Concept website mockup</small></span></div>
       <div class="footer-links"><a href="tel:4352601822">(435) 260-1822</a><a href="mailto:info@moabcanyontours.com">Email</a></div>
       <small>Moab, Utah · Daily 7am–7pm</small>
     </div>
