@@ -421,24 +421,40 @@ TEMPLATE = r'''<!doctype html>
       background:
         radial-gradient(circle at 50% 19%, rgba(255,255,255,.94), rgba(255,255,255,.66) 9rem, transparent 14rem),
         linear-gradient(180deg, #ffffff 0%, #ffffff 22%, #dff4fb 34%, #0d2635 63%, #07141c 100%);
-      justify-content: center;
+      justify-content: stretch;
       align-items: center;
       overflow: hidden;
       min-height: 620px;
-      gap: 16px;
+      padding: 28px 30px 30px;
+      gap: 0;
     }
-    .singenuity-logo { width: min(78%, 390px); height: auto; object-fit: contain; filter: drop-shadow(0 10px 20px rgba(0,0,0,.12)); }
-    .singenuity-device { width: min(112%, 580px); height: auto; object-fit: contain; filter: drop-shadow(0 28px 42px rgba(0,0,0,.42)); transform: translateX(-8px); }
-    .singenuity-left-copy { width: min(94%, 460px); text-align: center; margin-top: -4px; }
-    .singenuity-left-copy h2 { margin: 0; font-family: Inter, ui-sans-serif, system-ui, sans-serif; font-size: clamp(1.55rem, 3vw, 2.75rem); line-height: 1; letter-spacing: -.055em; font-weight: 850; }
+    .modal.singenuity-mode .modal-aside .mode-panel[data-panel="singenuity"].active {
+      width: 100%;
+      min-height: 562px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .singenuity-logo { width: min(78%, 390px); height: auto; object-fit: contain; filter: drop-shadow(0 10px 20px rgba(0,0,0,.12)); margin-top: 6px; }
+    .singenuity-device { width: min(108%, 560px); height: auto; object-fit: contain; filter: drop-shadow(0 28px 42px rgba(0,0,0,.42)); transform: translateX(-8px); margin-top: 6px; }
+    .singenuity-left-copy { width: min(94%, 460px); text-align: center; margin-top: auto; padding-bottom: 2px; }
+    .singenuity-left-copy h2 { margin: 0; font-family: Inter, ui-sans-serif, system-ui, sans-serif; font-size: clamp(1.55rem, 2.75vw, 2.55rem); line-height: .98; letter-spacing: -.055em; font-weight: 850; }
     .modal.singenuity-mode .modal-main { color: white; background: linear-gradient(145deg, rgba(255,255,255,.08), rgba(255,255,255,.02)); display: flex; flex-direction: column; justify-content: center; padding: 34px; }
+    .modal.singenuity-mode .modal-main .mode-panel[data-panel="singenuity"].active { min-height: 552px; display: flex; flex-direction: column; }
     .modal.singenuity-mode .close { background: rgba(255,255,255,.14); color: white; }
-    .singenuity-headline { font-size: clamp(2.35rem, 4.45vw, 4.45rem) !important; line-height: .94; letter-spacing: -.06em; margin: 0; }
-    .singenuity-copy { color: rgba(255,255,255,.76); font-weight: 750; line-height: 1.55; font-size: 1.08rem; margin: 18px 0 20px; }
-    .singenuity-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin: 18px 0 20px; }
-    .singenuity-card { border: 1px solid rgba(94,209,239,.34); background: linear-gradient(145deg, rgba(255,255,255,.98), rgba(235,249,255,.94)); border-radius: 21px; padding: 18px; box-shadow: 0 18px 36px rgba(0,0,0,.16), inset 0 1px 0 rgba(255,255,255,.8); }
-    .singenuity-card strong { display: block; color: #0a3048; font-size: 1.04rem; }
-    .singenuity-card p { margin: 6px 0 0; font-size: .92rem; line-height: 1.42; font-weight: 700; color: #41596b; }
+    .singenuity-headline { max-width: 640px; font-family: Georgia, "Times New Roman", serif; font-size: clamp(2.75rem, 4.25vw, 4.25rem) !important; font-weight: 500; line-height: .92; letter-spacing: -.055em; margin: 0; color: #f7fbfd; }
+    .singenuity-headline span { color: #67d9ef; font-style: italic; }
+    .singenuity-copy { max-width: 590px; color: rgba(255,255,255,.72); font-weight: 680; line-height: 1.48; font-size: 1.02rem; margin: 16px 0 18px; }
+    .singenuity-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 11px; margin: 0 0 18px; }
+    .singenuity-card { --card-accent: #2ab6f0; position: relative; overflow: hidden; border: 1px solid rgba(94,209,239,.28); border-top: 3px solid var(--card-accent); background: linear-gradient(145deg, rgba(255,255,255,.98), rgba(235,249,255,.94)); border-radius: 19px; padding: 15px 16px 16px; box-shadow: 0 16px 32px rgba(0,0,0,.14), inset 0 1px 0 rgba(255,255,255,.8); }
+    .singenuity-card:nth-child(2) { --card-accent: #20c9ad; }
+    .singenuity-card:nth-child(3) { --card-accent: #f2a65a; }
+    .singenuity-card:nth-child(4) { --card-accent: #86a9ff; }
+    .feature-number { display: inline-block; margin-bottom: 8px; color: var(--card-accent); font-size: .72rem; line-height: 1; letter-spacing: .12em; font-weight: 950; }
+    .singenuity-card strong { display: block; color: #0a3048; font-size: 1rem; }
+    .singenuity-card p { margin: 5px 0 0; font-size: .87rem; line-height: 1.38; font-weight: 680; color: #496071; }
+    .modal.singenuity-mode .modal-actions { margin-top: auto; }
     .text-sergio { display: inline-flex; align-items: center; justify-content: center; border-radius: 999px; padding: 14px 20px; background: linear-gradient(135deg,#2ab6f0,#65dce8); color: #062033; font-weight: 950; box-shadow: 0 18px 42px rgba(42,182,240,.26); }
     .ghost-action { border: 1px solid rgba(255,255,255,.16); background: rgba(255,255,255,.07); color: white; border-radius: 999px; padding: 13px 18px; font-weight: 900; cursor: pointer; }
     @media (max-width: 960px) {
@@ -474,8 +490,11 @@ TEMPLATE = r'''<!doctype html>
       .wide { grid-column: auto; }
       .modal { max-height: 96vh; border-radius: 24px; }
       .modal-main { padding: 22px; }
-      .modal.singenuity-mode .modal-aside { min-height: 420px; }
-      .singenuity-device { width: min(88%, 430px); }
+      .modal.singenuity-mode .modal-aside { min-height: 470px; }
+      .modal.singenuity-mode .modal-aside .mode-panel[data-panel="singenuity"].active { min-height: 412px; }
+      .singenuity-device { width: min(82%, 410px); }
+      .singenuity-left-copy h2 { font-size: clamp(1.45rem, 9vw, 2.35rem); }
+      .modal.singenuity-mode .modal-main .mode-panel[data-panel="singenuity"].active { min-height: 0; }
     }
     @media (prefers-reduced-motion: reduce) {
       html { scroll-behavior: auto; }
@@ -685,13 +704,13 @@ TEMPLATE = r'''<!doctype html>
         </div>
 
         <div class="mode-panel" data-panel="singenuity">
-          <div class="modal-top"><div><h3 class="singenuity-headline">Booking software that works like an operating system.</h3></div><button class="close js-close-booking" aria-label="Close booking popup" type="button">×</button></div>
-          <p class="singenuity-copy">Singenuity helps experience businesses sell online, simplify operations, and see which marketing efforts actually turn into bookings.</p>
+          <div class="modal-top"><div><h3 class="singenuity-headline">Turn interest into <span>booked adventures.</span></h3></div><button class="close js-close-booking" aria-label="Close booking popup" type="button">×</button></div>
+          <p class="singenuity-copy">Sell online, run the day, and see what drives revenue — all from one connected platform.</p>
           <div class="singenuity-grid">
-            <div class="singenuity-card"><strong>Better booking flow</strong><p>Guide guests to the right experience, date, capacity, add-ons, and checkout without making them hunt.</p></div>
-            <div class="singenuity-card"><strong>POS + online together</strong><p>Online booking and in-person POS in one connected system instead of scattered tools.</p></div>
-            <div class="singenuity-card"><strong>Complete guest toolkit</strong><p>Waivers, memberships, gift cards, staff tools, communication, mobile check-in, and reporting.</p></div>
-            <div class="singenuity-card"><strong>Marketing that connects</strong><p>Follow the guest journey from ad click or email to completed booking and revenue.</p></div>
+            <div class="singenuity-card"><span class="feature-number">01</span><strong>Book with less friction</strong><p>A clear path from activity to checkout.</p></div>
+            <div class="singenuity-card"><span class="feature-number">02</span><strong>One connected system</strong><p>Booking, POS, waivers, and guest data together.</p></div>
+            <div class="singenuity-card"><span class="feature-number">03</span><strong>Run the day smoothly</strong><p>Check-in, staff tools, and reporting from any device.</p></div>
+            <div class="singenuity-card"><span class="feature-number">04</span><strong>See what converts</strong><p>Connect campaigns to completed bookings and revenue.</p></div>
           </div>
           <div class="modal-actions"><a class="text-sergio" href="sms:+18018670934">Text Sergio</a><a class="ghost-action" href="https://www.climbworks.com/" target="_blank" rel="noopener">See Live Flow</a><button class="ghost-action js-show-booking" type="button">Back to booking demo</button></div>
         </div>
